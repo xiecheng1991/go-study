@@ -17,4 +17,4 @@ func main() {
 }
 
 func Marshal(v interface{}) ([]byte, error) json.Marshal返回v的json编码([]byte)如果出错error不为空
-func Unmarshal(data []byte, v interface{}) error json.Unmarshal 将解析json编码结果并放入v指向的值
+func Unmarshal(data []byte, v interface{}) error json.Unmarshal 将解析json编码结果并放入v指向的值(v必须要是一个指针 否则要报错)
