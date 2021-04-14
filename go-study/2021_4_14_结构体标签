@@ -1,0 +1,20 @@
+结构体标签一般都是用编解码
+例如
+type Test struct {
+    Id int `json:"id"`
+    Age int `json:"age"`
+}
+
+结构体名是否可导出视编解码是否所处结构体包外部而定,但是结构体的字段一定是要可导出的
+
+func main() {
+    t := Test{1, 1}
+    if d, e := json.Marshal( t ); e === nil {
+        fmt.Println( string(d) )
+    } else {
+        fmt.Println( e )
+    }
+}
+
+func Marshal(v interface{}) ([]byte, error) json.Marshal返回v的json编码([]byte)如果出错error不为空
+func Unmarshal(data []byte, v interface{}) error json.Unmarshal 将解析json编码结果并放入v指向的值
