@@ -18,3 +18,22 @@ func main() {
 
 func Marshal(v interface{}) ([]byte, error) json.Marshal返回v的json编码([]byte)如果出错error不为空
 func Unmarshal(data []byte, v interface{}) error json.Unmarshal 将解析json编码结果并放入v指向的值(v必须要是一个指针 否则要报错)
+
+结构体标签和omitempty
+type test struct {
+ 40         Id int `json:"id"`
+ 41         Age int `json:"age,omitempty"`
+ 42     }
+ 43 
+ 44     i := test{
+ 45         Id:1,
+ 46     }
+ 47 
+ 48     fmt.Println(i)
+ 49 
+ 50     b,_ := json.Marshal(i)
+ 51     fmt.Println(string(b))
+ 如果是标签中带了omitempty 则当该字段不存在时 不会被编码进json的
+ root@instance-u1n6fu49:~/go/src# go run test.go 
+{1 0}
+{"id":1}
